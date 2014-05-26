@@ -1,0 +1,61 @@
+@import "ui-variables";
+
+#rss-ticker {
+    display: inline-block;
+    clear: none;
+    float: none;
+
+    .rss-icon{
+      float: left;
+      line-height: 16px;
+      color: red;
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      padding:0  @component-padding;
+      margin: 1.4px 4px 0;
+      height: 19px;
+      font-size: 9px;
+      border-radius: 4px;
+      width:22px;
+      padding:@component-icon-padding;
+    }
+
+    .rss-news-wrapper{
+      max-width: 250px;
+      overflow:hidden;
+      float:left;
+
+      .news-list {
+          float: left;
+          min-width: 250px;
+          max-width: 250px;
+          height: 19px !important;
+          overflow: hidden;
+          position: relative;
+          border: 1px solid @inset-panel-border-color;
+          margin: 1px 0 0 0;
+          padding: 0 @component-padding 0;
+          background-color: @inset-panel-background-color;
+          border-radius: @component-border-radius;
+          box-sizing:border-box;
+          text-align: center;
+
+          .news-list-item {
+              display: block;
+              float: none;
+              margin-right: 25px;
+              margin-top:0;
+              line-height: 16px;
+              .news-list-link {
+                  text-align:center;
+                  color:@text-color-warning;
+              }
+
+          }
+
+      }
+
+    }
+
+}
