@@ -40,12 +40,14 @@ Keyboard shortcut `ctrl-shift-.` will toggle the RSS Ticker.
 #### Plugin settings page
 
 To access the RSS Ticker Settings:
+
 1. Go to `Atom -> Preferences...` or `cmd-,`
 2. In the `Filter Packages` type `rss-ticker`
 
 ![Settings](https://raw.github.com/afj176/rss-ticker/master/images/settings.png)
 
 RSS Ticker has two settings that can be edited:
+
 1. feed | default:`http://rss.cnn.com/rss/edition_world.rss?format=xml`
 2. icon | default:`atom://rss-ticker/images/Cnn.svg`
 
