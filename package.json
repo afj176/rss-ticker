@@ -1,7 +1,7 @@
 {
   "name": "rss-ticker",
   "main": "./lib/rss-ticker",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Rss news ticker for atom.io status bar.",
   "repository": "https://github.com/afj176/rss-ticker",
   "license": "MIT",
