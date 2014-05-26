@@ -55,7 +55,7 @@ class RssTickerView extends View
         _len = articles.length
         while _len > _i
           {title, link, content} = articles[_i]
-          description = content.replace(/<img[^>]*>/g, "").replace(/<a.*href=".*?".*>.*?<\/a>/gi, "").replace(/(<([^>]+)>)/ig,"")  if typeof content isnt "undefined"
+          description = content.replace(/(<([^>]+)>)/ig,"")  if typeof content isnt "undefined"
           @addNews title, link, description
           _i++
           statusBar.prependRight this if _len is _i
