@@ -48,7 +48,7 @@ class RssTickerView extends View
   articles: null
 
   attach: =>
-    statusBar = atom.workspaceView.statusBar
+    statusBar = document.querySelector('status-bar')
     if statusBar
 
       passArticles = (articles) =>
