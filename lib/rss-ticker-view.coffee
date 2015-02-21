@@ -1,4 +1,5 @@
-{$, $$, View} = require 'atom'
+{$, View} = require 'atom'
+{$$} = require 'atom-space-pen-views'
 
 feed = require("feed-read")
 
