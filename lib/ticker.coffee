@@ -4,7 +4,7 @@ risq / jquery-advanced-news-ticker in coffescipt
 http://risq.github.io/jquery-advanced-news-ticker
 ###
 
-{$} = require 'atom'
+{$} = require 'atom-space-pen-views'
 
 defaults =
   row_height: 20
