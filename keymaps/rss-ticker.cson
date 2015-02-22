@@ -7,5 +7,6 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
-'.atom-workspace':
+'atom-workspace':
   'shift-ctrl-.': 'rss-ticker:toggle'
+  'shift-ctrl-;': 'rss-ticker:refresh'

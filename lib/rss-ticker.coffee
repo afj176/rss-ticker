@@ -2,16 +2,24 @@ RssTickerView = require './rss-ticker-view'
 
 module.exports =
   rssTickerView: null
-  configDefaults:
-    refresh: 0
-    feed: "http://rss.cnn.com/rss/edition_world.rss?format=xml"
-    icon: "atom://rss-ticker/images/Cnn.svg"
-        #"http://upload.wikimedia.org/wikipedia/commons/8/8b/Cnn.svg"
+  config:
+    feed:
+      type: 'string'
+      default: 'http://rss.cnn.com/rss/edition_world.rss?format=xml'
+      description: ''
+    icon:
+      type: 'string'
+      default: 'atom://rss-ticker/images/Cnn.svg'
+      description: 'Icon for status bar rss feed can be svg,png, gif, jpg'
+    refresh:
+      type: 'integer'
+      default: 0
+      description: 'How many minutes until content refresh'
+
+
   activate: (state) ->
     @rssTickerView = new RssTickerView(state.RssTickerViewState)
-
-  deactivate: ->
-    @rssTickerView.destroy()
-
   serialize: ->
     RssTickerViewState: @rssTickerView.serialize()
+  deactivate: ->
+    @rssTickerView.destroy()

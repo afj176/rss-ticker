@@ -2,6 +2,7 @@
 'context-menu':
   '.overlayer':
       'Enable rss-ticker': 'rss-ticker:toggle'
+      'Refresh rss-ticker': 'rss-ticker:refresh'
 
 'menu': [
   {
@@ -10,6 +11,7 @@
       'label': 'RSS Ticker'
       'submenu': [
         { 'label': 'Toggle', 'command': 'rss-ticker:toggle' }
+        { 'label': 'Refresh', 'command': 'rss-ticker:refresh' }
       ]
     ]
   }

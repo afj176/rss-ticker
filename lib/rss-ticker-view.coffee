@@ -31,8 +31,13 @@ class RssTickerView extends View
 
   initialize: ->
 
-    atom.commands.add 'atom-workspace', 'rss-ticker:toggle': ->
+    atom.commands.add 'atom-workspace', 'rss-ticker:toggle': =>
       @toggle()
+
+    atom.commands.add 'atom-workspace', 'rss-ticker:refresh': =>
+        statusBar = document.querySelector('status-bar')
+        if statusBar
+          @build(statusBar)
 
     @toggle()
 
@@ -52,7 +57,6 @@ class RssTickerView extends View
     @detach()
 
   toggle: ->
-
     if @hasParent() then @detach() else @attach()
 
   addNews: (title, link, description) =>
@@ -99,15 +103,9 @@ class RssTickerView extends View
             passArticles @articles
 
 
-
-
-
-
   attach: =>
     statusBar = document.querySelector('status-bar')
     if statusBar
-
       @build(statusBar)
-
     else
       subscriptions.add atom.packages.once('activated', @attach)

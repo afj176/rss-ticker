@@ -18,6 +18,7 @@ $ apm install rss-ticker
 
 Alternatively, if you are a git user, you can install the theme and keep up to date by cloning the repo directly into your `~/.atom/packages` directory.
 
+
 ```sh
 $ git clone https://github.com/afj176/rss-ticker/ ~/.atom/packages/rss-ticker
 ```
@@ -33,9 +34,6 @@ $ git clone https://github.com/afj176/rss-ticker/ ~/.atom/packages/rss-ticker
 
 Display your favorite rss feed in your status bar.
 
-#### Deactivating/Activating the plugin
-
-Keyboard shortcut `ctrl-shift-.` will toggle the RSS Ticker.
 
 #### Plugin settings page
 
@@ -50,17 +48,16 @@ RSS Ticker has two settings that can be edited:
 
 1. feed | default:`http://rss.cnn.com/rss/edition_world.rss?format=xml`
 2. icon | default:`atom://rss-ticker/images/Cnn.svg`
+3. refresh | default: `0` (if zero minutes only refreshes when open/close windows)
 
 
 
 ### Commands
 
-The following commands are available for users to keymap.
+The following commands are available and are keyboard shortcuts.
 
-* `rss-ticker:toggle` - Toggle the status bar entry
+* `rss-ticker:toggle` - Toggle rss in status bar - `ctrl-shift-.`
+* `rss-ticker:refresh` - Refresh feed - `ctrl-shift-;`
 
-## Coming Soon
 
-* Tests
-
-Feel free to open an issue to discuss potential features to add or improve.
+Feel free fork, contribute, to open an issue to discuss potential features to add or improve.

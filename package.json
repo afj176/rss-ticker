@@ -11,6 +11,7 @@
   "dependencies": {
     "atom-space-pen-views": "^2.0.3",
     "feed-read": "0.0.1",
+    "request": ">=2.53.0",
     "q": "1.0.x"
   }
 }
