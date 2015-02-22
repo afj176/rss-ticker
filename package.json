@@ -1,12 +1,12 @@
 {
   "name": "rss-ticker",
   "main": "./lib/rss-ticker",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Rss news ticker for atom.io status bar.",
   "repository": "https://github.com/afj176/rss-ticker",
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=0.174.0 <2.0.0"
   },
   "dependencies": {
     "atom-space-pen-views": "^2.0.3",

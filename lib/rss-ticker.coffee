@@ -3,6 +3,7 @@ RssTickerView = require './rss-ticker-view'
 module.exports =
   rssTickerView: null
   configDefaults:
+    refresh: 0
     feed: "http://rss.cnn.com/rss/edition_world.rss?format=xml"
     icon: "atom://rss-ticker/images/Cnn.svg"
         #"http://upload.wikimedia.org/wikipedia/commons/8/8b/Cnn.svg"
