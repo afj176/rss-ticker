@@ -1,9 +1,16 @@
 @import "ui-variables";
-
+@rss-icon-width: 22px;
+@rss-news-wrapper-width:~"calc(100% - "(@rss-icon-width + 8px)~")";
+.rss-ticker-status-bar.inline-block{
+  max-width: 40vw;
+  min-width: 20vw;
+}
 #rss-ticker {
     display: inline-block;
     clear: none;
     float: none;
+    width:100%;
+    padding-top: 4px;
 
     .rss-icon{
       float: left;
@@ -17,21 +24,20 @@
       height: 19px;
       font-size: 9px;
       border-radius: 4px;
-      width:22px;
+      width:@rss-icon-width;
       padding:@component-icon-padding;
     }
 
     .rss-news-wrapper{
-      max-width: 250px;
+      width: @rss-news-wrapper-width;
       overflow:hidden;
       float:left;
-
+      height: 20px;
+      position: relative;
       .news-list {
+          transition: all 1500ms ease-in;
           float: left;
-          min-width: 250px;
-          max-width: 250px;
-          height: 19px !important;
-          overflow: hidden;
+          width: 100%;
           position: relative;
           border: 1px solid @inset-panel-border-color;
           margin: 1px 0 0 0;
@@ -42,12 +48,17 @@
           text-align: center;
 
           .news-list-item {
+              height: 20px;
+              position: relative;
               display: block;
               float: none;
-              margin-right: 25px;
+              margin-right: 0;
               margin-top:0;
+              width:100%;
               line-height: 16px;
               .news-list-link {
+                  height: 20px;
+                  display: block;
                   text-align:center;
                   color:@text-color-warning;
               }
