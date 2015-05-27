@@ -1,8 +1,9 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
-  '.overlayer':
-      'Enable rss-ticker': 'rss-ticker:toggle'
-      'Refresh rss-ticker': 'rss-ticker:refresh'
+  'atom-workspace': [
+    {label: 'Enable Rss Ticker', command: 'rss-ticker:toggle'}
+    {label: 'Refresh Rss Ticker', command: 'rss-ticker:refresh'}
+  ]
 
 'menu': [
   {

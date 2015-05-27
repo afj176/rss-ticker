@@ -18,8 +18,11 @@ module.exports =
 
 
   activate: (state) ->
-    @rssTickerView = new RssTickerView(state.RssTickerViewState)
+    tickerStatus = =>
+      @rssTickerView = new RssTickerView(state.RssTickerViewState)
+      return
+    atom.packages.onDidActivateInitialPackages -> tickerStatus()
   serialize: ->
     RssTickerViewState: @rssTickerView.serialize()
   deactivate: ->
-    @rssTickerView.destroy()
+    @rssTickerView?.destroy()
