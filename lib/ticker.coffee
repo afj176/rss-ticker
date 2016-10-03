@@ -53,24 +53,28 @@ Ticker:: =
   init: ->
     @$el.height(@options.row_height * @options.max_rows).css overflow: "hidden"
     @checkSpeed()
-    if @options.nextButton and typeof (@options.nextButton[0]) isnt "undefined"
+    noNext = typeof (@options.nextButton[0]) isnt "undefined"
+    noPrev = typeof (@options.prevButton[0]) isnt "undefined"
+    noStop = typeof (@options.stopButton[0]) isnt "undefined"
+    noStart = typeof (@options.startButton[0]) isnt "undefined"
+    if @options.nextButton and noNext
       @options.nextButton.click ((e) ->
         @moveNext()
         @resetInterval()
         return
       ).bind(this)
-    if @options.prevButton and typeof (@options.prevButton[0]) isnt "undefined"
+    if @options.prevButton and noPrev
       @options.prevButton.click ((e) ->
         @movePrev()
         @resetInterval()
         return
       ).bind(this)
-    if @options.stopButton and typeof (@options.stopButton[0]) isnt "undefined"
+    if @options.stopButton and noStop
       @options.stopButton.click ((e) ->
         @stop()
         return
       ).bind(this)
-    if @options.startButton and typeof (@options.startButton[0]) isnt "undefined"
+    if @options.startButton and noStart
       @options.startButton.click ((e) ->
         @start()
         return
@@ -139,7 +143,10 @@ Ticker:: =
     unless @moving
       @moving = 1
       @options.movingDown()
-      @$el.children("li:last").detach().prependTo(@$el).css("marginTop", "-" + @options.row_height + "px").animate
+      mt = "marginTop"
+      mTop = "-" + @options.row_height + "px"
+      ll = "li:last"
+      @$el.children(ll).detach().prependTo(@$el).css(mt, mTop).animate
         marginTop: "0px"
       , @options.speed, (->
         @moving = 0
@@ -176,13 +183,14 @@ Ticker:: =
     return
 
   getState: ->
-    if paused # 2 = paused
+    if @paused # 2 = paused
       2
     else # 0 = stopped, 1 = started
       @state
 
   checkSpeed: ->
-    @options.speed = @options.duration - 25  if @options.duration < (@options.speed + 25)
+    durationGspeed = @options.duration < (@options.speed + 25)
+    @options.speed = @options.duration - 25  if durationGspeed
     return
 
   destroy: ->

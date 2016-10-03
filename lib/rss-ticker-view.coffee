@@ -14,20 +14,23 @@ $.fn[tickerName] = (option, args...) ->
     $this = $(this)
     data = $.data(this, "plugin_" + tickerName)
     options = typeof option is "object" and option
-    $this.data "plugin_" + tickerName, (data = new Ticker(this, options))  unless data
+    pgName = "plugin_" + tickerName
+    $this.data pgName, (data = new Ticker(this, options)) unless data
 
     # if first argument is a string, call silimarly named function
-    data[option].apply data, Array::slice.call(args, 1)  if typeof option is "string"
+    isString = typeof option is "string"
+    data[option].apply data, Array::slice.call(args, 1)  if isString
     return
 
 module.exports =
 class RssTickerView extends View
-
+  @icon: atom.config.get('rss-ticker.icon')
+  @newsSelector: 'news-list inset-panel padded inline-block-tight'
   @content: ->
     @div id: 'rss-ticker', class:'ticker-box inline-block', =>
-      @img class:'rss-icon', src: atom.config.get('rss-ticker.icon'), width:'19px', height:'18px'
+      @img class:'rss-icon', src: @icon, width:'19px', height:'18px'
       @div class:'rss-news-wrapper', =>
-        @ul id:'news', class:'news-list inset-panel padded inline-block-tight', outlet: "news"
+        @ul id:'news', class: @newsSelector, outlet: "news"
 
   initialize: ->
 
@@ -35,9 +38,9 @@ class RssTickerView extends View
       @toggle()
 
     atom.commands.add 'atom-workspace', 'rss-ticker:refresh': =>
-        statusBar = document.querySelector('status-bar')
-        if statusBar
-          @build(statusBar)
+      statusBar = document.querySelector('status-bar')
+      if statusBar
+        @build(statusBar)
 
     @toggle()
 
@@ -60,10 +63,10 @@ class RssTickerView extends View
     if @hasParent() then @detach() else @attach()
 
   addNews: (title, link, description) =>
-
+    linkSelec = 'news-list-link'
     if(title)
       listItem = $('<li></li>').attr(class: 'news-list-item')
-      linkItem = $('<a></a>').attr(href: link, class: 'news-list-link').text(title)
+      linkItem = $('<a></a>').attr(href: link, class: linkSelec).text(title)
       @news.append(listItem.html(linkItem))
       description = (if (description) then description else "No description")
       subscriptions.add atom.tooltips.add(linkItem, {title: description })
@@ -81,7 +84,8 @@ class RssTickerView extends View
       _len = articles.length
       while _len > _i
         {title, link, content} = articles[_i]
-        description = content.replace(/(<([^>]+)>)/ig,"")  if typeof content isnt "undefined"
+        noCOntent = typeof content isnt "undefined"
+        description = content.replace(/(<([^>]+)>)/ig,"")  if noCOntent
         @addNews title, link, description
         _i++
         statusBar.addRightTile(item: this, priority: 100) if _len is _i
