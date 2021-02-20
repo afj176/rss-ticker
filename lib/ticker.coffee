@@ -53,10 +53,22 @@ Ticker:: =
   init: ->
     @$el.height(@options.row_height * @options.max_rows).css overflow: "hidden"
     @checkSpeed()
-    noNext = typeof (@options.nextButton[0]) isnt "undefined"
-    noPrev = typeof (@options.prevButton[0]) isnt "undefined"
-    noStop = typeof (@options.stopButton[0]) isnt "undefined"
-    noStart = typeof (@options.startButton[0]) isnt "undefined"
+    noNext = false
+    if @options.nextButton isnt null
+      if typeof (@options.nextButton[0]) isnt "undefined"
+        noNext = true
+    noPrev = false
+    if @options.prevButton isnt null
+      if typeof (@options.prevButton[0]) isnt "undefined"
+        noPrev = true
+    noStop = false
+    if @options.stopButton isnt null
+      if typeof (@options.stopButton[0]) isnt "undefined"
+        noStop = false
+    noStart = false
+    if @options.startButton isnt null
+      if typeof (@options.startButton[0]) isnt "undefined"
+        noStart = true
     if @options.nextButton and noNext
       @options.nextButton.click ((e) ->
         @moveNext()

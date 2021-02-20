@@ -24,7 +24,13 @@ $.fn[tickerName] = (option, args...) ->
 
 module.exports =
 class RssTickerView extends View
-  @icon: atom.config.get('rss-ticker.icon')
+  icon = atom.config.get('defaultSettings.rss-ticker.icon')
+  userConfigIcon = atom.config.get('rss-ticker.icon')
+  if typeof (userConfigIcon) isnt "undefined"
+    icon = userConfigIcon
+  if typeof (icon) is "undefined" or icon == ""
+    icon = "https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg"
+  @icon: icon
   @newsSelector: 'news-list inset-panel padded inline-block-tight'
   @content: ->
     @div id: 'rss-ticker', class:'ticker-box inline-block', =>
@@ -44,7 +50,7 @@ class RssTickerView extends View
 
     @toggle()
 
-    minutes = atom.config.get 'rss-ticker.refresh'
+    minutes = atom.config.get('rss-ticker.refresh')
 
     if minutes > 0
       refresh = minutes * 60 * 1000
@@ -84,16 +90,22 @@ class RssTickerView extends View
       _len = articles.length
       while _len > _i
         {title, link, content} = articles[_i]
-        noCOntent = typeof content isnt "undefined"
-        description = content.replace(/(<([^>]+)>)/ig,"")  if noCOntent
+        noContent = typeof content isnt "undefined"
+        description = content.replace(/(<([^>]+)>)/ig,"")  if noContent
         @addNews title, link, description
         _i++
         statusBar.addRightTile(item: this, priority: 100) if _len is _i
 
         @news.newsTicker()
 
+
+    feedURL = atom.config.get('defaultSettings.rss-ticker.feed')
+    userConfigFeed = atom.config.get('rss-ticker.feed')
+    if typeof (userConfigFeed) isnt "undefined"
+      feedURL =  userConfigFeed
+
     options =
-      url: atom.config.get('rss-ticker.feed')
+      url: feedURL
       headers: 'User-Agent': 'request'
     request options, (error, response, body) =>
       if !error and response.statusCode == 200
